@@ -58,7 +58,7 @@
   "gnetId": null,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1530620533770,
+  "iteration": 1530620533773,
   "links": [],
   "panels": [
     {
@@ -103,12 +103,12 @@
       "interval": null,
       "links": [
         {
-          "dashUri": "db/instance-overview-new",
-          "dashboard": "Instance Overview - New",
+          "dashUri": "db/instance-overview",
+          "dashboard": "Instance Overview",
           "includeVars": true,
           "keepTime": true,
           "targetBlank": true,
-          "title": "Instance Overview - New",
+          "title": "Instance Overview",
           "type": "dashboard"
         }
       ],
@@ -1119,5 +1119,5 @@
   "timezone": "browser",
   "title": "Instances At-a-Glance",
   "uid": "o2mxmpHmk",
-  "version": 6
+  "version": 7
 }
