@@ -9,3 +9,5 @@ Spun off from this comes Microsoft monitoring Azure SQL Managed Instances see th
 https://blogs.msdn.microsoft.com/sqlcat/2018/09/26/real-time-performance-monitoring-for-azure-sql-database-managed-instance/
 
 Frank Henninger has customized this solution more and started blogging about it at https://www.osirismedia.biz/custom-sql-metrics-gathering-with-telegraf/.
+
+Kevin Feasel has blogged about easy this solution is to setup, https://36chambers.wordpress.com/2019/02/05/metrics-for-free-sql-server-monitoring-with-telegraf/.
