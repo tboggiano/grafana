@@ -58,7 +58,7 @@
   "gnetId": null,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1550507340820,
+  "iteration": 1550508472715,
   "links": [],
   "panels": [
     {
@@ -843,7 +843,7 @@
           "measurement": "sqlserver_performance",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "SELECT non_negative_derivative(max(\"value\")) FROM \"sqlserver_performance\" WHERE (\"counter\" = 'Processes blocked' OR \"counter\" = 'User Connections')  AND \"host\" =~ /^$Host$/ AND $timeFilter GROUP BY time($__interval), \"counter\"",
+          "query": "SELECT max(\"value\") FROM \"sqlserver_performance\" WHERE (\"counter\" = 'Processes blocked' OR \"counter\" = 'User Connections')  AND \"host\" =~ /^$Host$/ AND $timeFilter GROUP BY time($__interval), \"counter\"",
           "rawQuery": true,
           "refId": "B",
           "resultFormat": "time_series",
