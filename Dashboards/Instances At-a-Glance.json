@@ -58,7 +58,7 @@
   "gnetId": null,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1550508472715,
+  "iteration": 1551813087348,
   "links": [],
   "panels": [
     {
@@ -386,7 +386,16 @@
       },
       "lines": true,
       "linewidth": 1,
-      "links": [],
+      "links": [
+        {
+          "dashboard": "Database Latency",
+          "includeVars": true,
+          "keepTime": true,
+          "title": "Database Latency",
+          "type": "dashboard",
+          "url": "/d/0ij0mpHiz/database-latency"
+        }
+      ],
       "nullPointMode": "null",
       "percentage": false,
       "pointradius": 5,
@@ -719,9 +728,11 @@
       "seriesOverrides": [
         {
           "alias": "Processes blocked",
-          "bars": true,
           "color": "#bf1b00",
-          "lines": false,
+          "yaxis": 2
+        },
+        {
+          "alias": "Number of Deadlocks/sec",
           "yaxis": 2
         }
       ],
@@ -784,7 +795,7 @@
           ],
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "SELECT non_negative_derivative(max(\"value\"), 1s) FROM \"sqlserver_performance\" WHERE ((\"counter\" = 'Transactions/sec' AND \"instance\" =~ /^Total/ ) OR \"counter\" = 'SQL Re-Compilations/sec' OR \"counter\" = 'SQL Compilations/sec' OR \"counter\" = 'Batch Requests/sec' OR \"counter\" = 'Number of Deadlocks/sec' ) AND \"host\" =~ /^$Host$/ AND $timeFilter GROUP BY time($__interval), \"counter\"",
+          "query": "SELECT non_negative_derivative(last(\"value\"), 1s) FROM \"sqlserver_performance\" WHERE ((\"counter\" = 'Transactions/sec' AND \"instance\" =~ /^Total/ ) OR (\"counter\" = 'Write Transactions/sec' AND \"instance\" =~ /^Total/ ) OR (\"counter\" = 'XTP Memory Used (KB)' AND \"instance\" =~ /^Total/ )OR \"counter\" = 'SQL Re-Compilations/sec' OR \"counter\" = 'SQL Compilations/sec' OR \"counter\" = 'Batch Requests/sec' ) AND \"host\" =~ /^$Host$/ AND $timeFilter GROUP BY time($__interval), \"counter\"",
           "rawQuery": true,
           "refId": "A",
           "resultFormat": "time_series",
@@ -880,6 +891,44 @@
               "value": "User Connections"
             }
           ]
+        },
+        {
+          "alias": "[[tag_counter]]",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT non_negative_difference(last(\"value\")) FROM \"sqlserver_performance\" WHERE \"counter\" = 'Number of Deadlocks/sec'  AND \"host\" =~ /^$Host$/ AND $timeFilter GROUP BY time($__interval), \"counter\"",
+          "rawQuery": true,
+          "refId": "C",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": []
         }
       ],
       "thresholds": [],
@@ -1136,5 +1185,5 @@
   "timezone": "browser",
   "title": "Instances At-a-Glance",
   "uid": "o2mxmpHmk",
-  "version": 15
+  "version": 18
 }
